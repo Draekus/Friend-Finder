@@ -270,22 +270,23 @@
 </body>
 
 <script>
+  // Submit Button on click event
 $( "#submit-button" ).click(function() {
 
   
-
+  // variable that holds the value of all the inputs
   let validate = $('.form-control').val()
   
-  console.log(validate)
+  // checks if any of the inputs are not filled in
   if (validate === '') {
     // generate modal
     valid = false;
-    // alert("Please answer all questions.")
     $('#alert-modal').modal('toggle')
   }
   
   else  if (validate ==! true) {
    
+    // putting all of the input values into variables
     let name = $('#name-input').val().trim();
     let img = $('#img-input').val().trim();
     let answer1 = $('#question-1').val().trim();
@@ -299,6 +300,7 @@ $( "#submit-button" ).click(function() {
     let answer9 = $('#question-9').val().trim();
     let answer10 = $('#question-10').val().trim();
     
+    // sending a post request with the data from our form
     $.post('/api/friends', 
         
         {
@@ -319,6 +321,7 @@ $( "#submit-button" ).click(function() {
           "difference": 0
         }, 
        function(data, status) {
+        //  Sets the dynamic content of the modal to the bestMatch data and toggles it on
          $('#match-name').text(`Name: ${data.name}`);
          $('#match-img').attr('src', data.photo);
          $('#match-img').width(300);
