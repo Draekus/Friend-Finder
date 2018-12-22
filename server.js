@@ -1,32 +1,26 @@
 const express = require("express");
 
-const path = require('path');
-
 const app = express();
 
 const PORT = process.env.PORT || 8080;
 
-const api = require('./app/routing/apiRoutes');
-
-const html = require('./app/routing/htmlRoutes');
+const routes = require("./app/routing/router");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 
-api(app);
+// api(app);
 
-html(app, path);
+// html(app, path);
 
 
-app.get("/api/friends", function(req, res) {
 
-}); 
 
-app.post("/", function(req, res) {
+app.use(routes);
 
-});
-
+// Start our server so that it can begin listening to client requests.
 app.listen(PORT, function() {
-    console.log("App listening on PORT " + PORT);
-  });
+  // Log (server-side) when our server has started
+  console.log("Server listening on: http://localhost:" + PORT);
+});
