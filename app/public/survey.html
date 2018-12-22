@@ -16,6 +16,11 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </head>
 <style>
+  .icon {
+    font-size: 40px;
+    margin-right: 10px;
+  }
+
   .survey-title {
     border-bottom: solid gray 1px;
     margin: 20px;
@@ -232,7 +237,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">We Found Your Match!</h5>
+              <h5 class="modal-title">We Found Your Friend!</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -244,25 +249,57 @@
           </div>
         </div>
       </div>
+
+      <!-- Alert Modal -->
+      <div class="modal" id="alert-modal" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"><i class="icon large material-icons">error</i>Invalid Submition</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p id="">You have failed to answer one or more questions. Please complete them to submit your survey.</p>
+                <img id="match-img">
+              </div>
+            </div>
+          </div>
+        </div>
 </body>
 
 <script>
 $( "#submit-button" ).click(function() {
 
-  let name = $('#name-input').val().trim();
-  let img = $('#img-input').val().trim();
-  let answer1 = $('#question-1').val().trim();
-  let answer2 = $('#question-2').val().trim();
-  let answer3 = $('#question-3').val().trim();
-  let answer4 = $('#question-4').val().trim();
-  let answer5 = $('#question-5').val().trim();
-  let answer6 = $('#question-6').val().trim();
-  let answer7 = $('#question-7').val().trim();
-  let answer8 = $('#question-8').val().trim();
-  let answer9 = $('#question-9').val().trim();
-  let answer10 = $('#question-10').val().trim();
+  
 
-  $.post('/api/friends', 
+  let validate = $('.form-control').val()
+  
+  console.log(validate)
+  if (validate === '') {
+    // generate modal
+    valid = false;
+    // alert("Please answer all questions.")
+    $('#alert-modal').modal('toggle')
+  }
+  
+  else  if (validate ==! true) {
+   
+    let name = $('#name-input').val().trim();
+    let img = $('#img-input').val().trim();
+    let answer1 = $('#question-1').val().trim();
+    let answer2 = $('#question-2').val().trim();
+    let answer3 = $('#question-3').val().trim();
+    let answer4 = $('#question-4').val().trim();
+    let answer5 = $('#question-5').val().trim();
+    let answer6 = $('#question-6').val().trim();
+    let answer7 = $('#question-7').val().trim();
+    let answer8 = $('#question-8').val().trim();
+    let answer9 = $('#question-9').val().trim();
+    let answer10 = $('#question-10').val().trim();
+    
+    $.post('/api/friends', 
         
         {
           "name": name,
@@ -288,6 +325,8 @@ $( "#submit-button" ).click(function() {
          $('#match-img').height(300);
          $("#match-modal").modal("toggle");
   });
+  }
+  
 
   })
 </script>
