@@ -4,6 +4,8 @@ const path = require('path')
 
 const router = express.Router();
 
+let friends = require('../data/friends')
+
 router.get("/api/friends", function(req, res) {
     
     // sends the friends object to the client
