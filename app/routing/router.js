@@ -7,9 +7,11 @@ const router = express.Router();
 let friends = require('../data/friends')
 
 router.get("/api/friends", function(req, res) {
-    
+    console.log(req);
+    console.log(res);
     // sends the friends object to the client
       return res.json(friends);
+      
   }); 
 
   // post request aimed at /api/friends
