@@ -291,11 +291,10 @@ $( '#submit-button' ).click(function() {
   // checks if any of the inputs are not filled in
   if (validate === '') {
     // generate modal
-    valid = false;
     $('#alert-modal').modal('toggle')
   }
   
-  else  if (validate === true) {
+  else {
    
     // putting all of the input values into variables
     let name = $('#name-input').val().trim();

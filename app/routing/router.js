@@ -48,10 +48,10 @@ for (let y = 0; y < friends.length; y++) {
     bestDifference = friends[y].difference;
     bestMatch = friends[y]
 
-    // adds the user's submission to the friends array
-    friends.push(user)
     }
 }
+// adds the user's submission to the friends array
+friends.push(user)
 // Send the bestMatch object to the client
 res.json(bestMatch);
 });
